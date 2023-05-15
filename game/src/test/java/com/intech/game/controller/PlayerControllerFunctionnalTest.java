@@ -19,32 +19,33 @@ import com.intech.game.model.Player;
 public class PlayerControllerFunctionnalTest {
 
 	@Autowired
-	private TestRestTemplate restTemplate;	
-	
+	private TestRestTemplate restTemplate;
+
 	@Test
 	@Timeout(unit = TimeUnit.MINUTES, value = 1)
 	public void getPlayers() {
-		
+		// Act
 		Player[] players = restTemplate.getForObject("/player", Player[].class);
-		
+		// Assert
 		assertEquals(1, players[0].getPlayerId());
 		assertEquals("test1", players[0].getUsername());
 		assertEquals(10, players[0].getLevel());
-		
+
 		assertEquals(2, players[1].getPlayerId());
 		assertEquals("test2", players[1].getUsername());
-		assertEquals(4, players[1].getLevel());		
+		assertEquals(4, players[1].getLevel());
 	}
-	
+
 	@Test
-	@Timeout(unit = TimeUnit.MINUTES, value=1)
+	@Timeout(unit = TimeUnit.MINUTES, value = 1)
 	public void getPlayer() {
+		// Act
 		Player player = restTemplate.getForObject("/player/1", Player.class);
-		
+		// Assert
 		assertEquals(1, player.getPlayerId());
 		assertEquals("test1", player.getUsername());
 		assertEquals(10, player.getLevel());
 		assertEquals(2, player.getRewards().size());
-	}	
+	}
 
 }

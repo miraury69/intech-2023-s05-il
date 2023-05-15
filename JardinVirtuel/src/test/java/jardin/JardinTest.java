@@ -22,39 +22,39 @@ import jardin.flore.Etat;
 
 @ExtendWith(MockitoExtension.class)
 public class JardinTest {
-	
+
 	@Mock
 	private InputReader inputReaderMock;
-	
+
 	@Mock
 	private Betterave betteraveMock;
-	
+
 	private Jardin j;
-	
+
 	@BeforeEach
 	private void init() {
-		j = new Jardin(3,4);
+		j = new Jardin(3, 4);
 	}
-	
+
 	@Test
 	public void testSemerAil() {
-		//Arrange
+		// Arrange
 //		String input = "0 0 1";
 //		System.setIn(new ByteArrayInputStream(input.getBytes()));
 		j.setInputReader(inputReaderMock);
-		
-		when(inputReaderMock.readIntValue()).thenReturn(0,0,1);		
-		
+
+		when(inputReaderMock.readIntValue()).thenReturn(0, 0, 1);
+
 		j.ajouterPanier("Ail", 3);
-		
-		//Act
+
+		// Act
 		j.semer();
-		
-		//Assert
+
+		// Assert
 		verify(inputReaderMock, times(3)).readIntValue();
-		
+
 		assertEquals(2, j.getPanier().get("Ail"));
-		assertTrue(j.getEmplacement()[0][0].getVeg() instanceof Ail);		
+		assertTrue(j.getEmplacement()[0][0].getVeg() instanceof Ail);
 	}
 
 	@Test
@@ -107,10 +107,10 @@ public class JardinTest {
 			j.passerSaisonSuivante();
 		}
 
-		//Assert
+		// Assert
 		assertNull(j.getEmplacement()[0][0]);
 	}
-	
+
 	@Test
 	public void testRecolterEnFleurEtOgm() {
 		//Arrange
@@ -124,16 +124,11 @@ public class JardinTest {
 		j.recolter();
 		
 		//Assert
-		
 		verify(betteraveMock).getEtat();
 		verify(betteraveMock).seDupliquer(3, 4);
 		
 		assertNull(j.getEmplacement()[0][0]);
-		assertNotNull(j.getEmplacement()[1][1]);
-		
+		assertNotNull(j.getEmplacement()[1][1]);		
 	}
-	
-	
-	
 
 }

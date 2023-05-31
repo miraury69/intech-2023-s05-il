@@ -26,6 +26,5 @@ Tâches à effectuer :
 Rendu :
 
 - Envoyer à romain.sessa@ext.esiea.fr
-- Objet du mail : A5S - Tests automatiques
+- Objet du mail : Tests automatiques
 - Corps du mail : Lien github avec un message gentil :)
-- A envoyer le 27/01/2022

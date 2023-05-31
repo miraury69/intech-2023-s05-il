@@ -33,7 +33,7 @@ public class PlayerControllerUnitTest {
 
 	@Test
 	public void testGetPlayers() throws Exception {
-		//Arra,ge
+		//Arrange
 		List<Player> players = new ArrayList<Player>();
 		Player p1 = new Player();
 		p1.setPlayerId(1);

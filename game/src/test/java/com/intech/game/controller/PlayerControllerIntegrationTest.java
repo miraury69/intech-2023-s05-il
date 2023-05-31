@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.RequestBuilder;
@@ -20,6 +21,7 @@ public class PlayerControllerIntegrationTest {
 	@Autowired
 	private MockMvc mockMvc;
 	
+	@WithMockUser
 	@Test
 	public void testGetPlayers() throws Exception {
 		//Arrange
@@ -33,6 +35,7 @@ public class PlayerControllerIntegrationTest {
 		
 	}
 	
+	@WithMockUser
 	@Test
 	public void testGetPlayer() throws Exception {
 		//Arrange
@@ -46,6 +49,7 @@ public class PlayerControllerIntegrationTest {
 		rActions.andExpect(MockMvcResultMatchers.jsonPath("$.level", CoreMatchers.is(10)));
 	}
 	
+	@WithMockUser
 	@Test
 	public void testGetPlayerNotFound() throws Exception {
 		//Arrange

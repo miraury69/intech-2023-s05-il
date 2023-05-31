@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.boot.test.web.client.TestRestTemplate;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.ActiveProfiles;
 
 import com.intech.game.model.Player;
@@ -25,7 +26,7 @@ public class PlayerControllerFunctionnalTest {
 	@Timeout(unit = TimeUnit.MINUTES, value = 1)
 	public void getPlayers() {
 		// Act
-		Player[] players = restTemplate.getForObject("/player", Player[].class);
+		Player[] players = restTemplate.withBasicAuth("user","password").getForObject("/player", Player[].class);
 		// Assert
 		assertEquals(1, players[0].getPlayerId());
 		assertEquals("test1", players[0].getUsername());
@@ -40,7 +41,7 @@ public class PlayerControllerFunctionnalTest {
 	@Timeout(unit = TimeUnit.MINUTES, value = 1)
 	public void getPlayer() {
 		// Act
-		Player player = restTemplate.getForObject("/player/1", Player.class);
+		Player player = restTemplate.withBasicAuth("user","password").getForObject("/player/1", Player.class);
 		// Assert
 		assertEquals(1, player.getPlayerId());
 		assertEquals("test1", player.getUsername());
